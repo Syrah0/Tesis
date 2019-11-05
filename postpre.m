@@ -7,7 +7,7 @@ data = load([path,file]);
 data = data.DATA_REJECT;
 
 %% Elegir trial y hacer filtro pasa bajo a 40
-ID             = 91; % event
+ID             = 102; % event
 cfg            = [];
 cfg.trial      = find(data.trialinfo(:,1)==ID); % por cada eventtype
 cfg.lpfilter   = 'yes';

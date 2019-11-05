@@ -25,6 +25,6 @@ ft_databrowser(cfg,DATA_REJECT);
 %% Guarda el dato analizado
 
 %DATA_REJECT_SINSAL_PAT = DATA_REJECT;
-% save([path, file(1:end-12), '_FINISH.mat'],'DATA_REJECT') ; % POST REJECT
+save([path, file(1:end-12), '_FINISH.mat'],'DATA_REJECT') ; % POST REJECT
 
 %close all

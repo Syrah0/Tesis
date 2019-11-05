@@ -1,8 +1,8 @@
 %% cargar data
 path        = 'E:\DatosPsiquiatrico\Procesados\STB\';
-file        = 'CNTF_001_FIRST_STEP.mat';
+file        = 'CNTF_001_REJECT_COMP.mat';
 data        = load([path,file]);
-DATAEEG_CAT = data.DATAEEG;%dataFIC;
+DATAEEG_CAT = data.REJECT_COMP2;%dataFIC;
 
 %% downsamplig --> ICA --> RECHAZO VISUAL
 cfg            = [];

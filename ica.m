@@ -1,8 +1,8 @@
 %% cargar data
 path        = 'E:\DatosPsiquiatrico\Procesados\STB\';
-file        = 'CNTF_001_REJECT_COMP.mat';
+file        = 'FEP_010_REJECT_COMP.mat';
 data        = load([path,file]);
-DATAEEG_CAT = data.REJECT_COMP2;%dataFIC;
+DATAEEG_CAT = data.REJECT_COMP;
 
 %% downsamplig --> ICA --> RECHAZO VISUAL
 cfg            = [];
@@ -18,6 +18,7 @@ cfg.channel = 1:64;
 comp        = ft_componentanalysis(cfg, RESAM);
        
 save([path, file(1:end-15), '_ICA_FIX.mat'],'comp') ;
+'guardado'
         
 %% Rechazo de componentes
         

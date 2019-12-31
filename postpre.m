@@ -2,12 +2,12 @@
 
 %% Cargar data
 path = 'E:\DatosPsiquiatrico\Procesados\STB\';
-file = 'CNTF_001_FINISH.mat';
+file = 'FEP_010__FINISH.mat';
 data = load([path,file]);
 data = data.DATA_REJECT;
 
 %% Elegir trial y hacer filtro pasa bajo a 40
-ID             = 102; % event
+ID             = 91; % event
 cfg            = [];
 cfg.trial      = find(data.trialinfo(:,1)==ID); % por cada eventtype
 cfg.lpfilter   = 'yes';
@@ -25,8 +25,12 @@ cfg.baseline = [-0.2 -0.1]; % no usar linea base en el cero
 timelock     = ft_timelockbaseline(cfg, erps);
 %%%timelock_CROM_PAT = timelock; %Cambia categoria y sujetos que se
 %%%analiza?
+avg = timelock.avg;
+times = timelock.time;
 
 save([path, file(1:8), '_ERP_', sprintf('%i', ID), '.mat'],'timelock')
+save([path, file(1:8), '_ERP_', sprintf('%i', ID), '_AVG.mat'],'avg')
+save([path, file(1:8), '_ERP_', sprintf('%i', ID), '_TIME.mat'],'times')
 
 %%%% seleccionar electrodos de interes y promediar ERP (promedio para el sujeto)
 

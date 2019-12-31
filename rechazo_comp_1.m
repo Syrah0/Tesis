@@ -3,7 +3,7 @@
 
 %% cargar data
 path    = 'E:\DatosPsiquiatrico\Procesados\STB\';
-file    = 'CNTF_001_FIRST_STEP.mat';
+file    = 'FEP_010_FIRST_STEP.mat';
 data    = load([path,file]);
 dataFIC = data.DATAEEG;
 
@@ -42,4 +42,4 @@ cfg.allowoverlap = 'yes';
 
 ft_databrowser(cfg, REJECT_COMP);%Dato con rechazo
 
-% save([path, file(1:end-15), '_REJECT_COMP.mat'],'REJECT_COMP') ; % POST
+% save([path, file(1:end-15), '_REJECT_COMP.mat'],'REJECT_COMP'); % POST

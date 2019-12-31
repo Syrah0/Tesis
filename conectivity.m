@@ -3,7 +3,7 @@
 %% cargar data preprocesada en EEGLAB
 % data = eeglab2fieldtrip(EEG, 'preprocessing', 'none');   % convert the EEG data structure to fieldtrip
 path = 'E:\DatosPsiquiatrico\Procesados\STB\';
-file = 'CNTF_001_FINISH.mat';
+file = 'FEP_010__FINISH.mat';
 data = load([path,file]);
 data = data.DATA_REJECT;
 
@@ -45,8 +45,12 @@ freq          = ft_freqanalysis(cfg, data); % VER COMO REMOVER TRIALINFO
  
 cfg           = [];
 cfg.method    = 'coh';
-coh           = ft_connectivityanalysis(cfg, freq);
+coh           = ft_connectivityanalysis(cfg, freq); %% muestra la conectividad de un electrodo con otro para una cierta frecuencia, la diagonal es 1 => 100% conectividad, mientras mas cerca de 1 => mas conectado estas
 % cohm          = ft_connectivityanalysis(cfg, mfreq);
+coh_freq = coh.freq;
+coh_conectivity = coh.cohspctrm;
 
 save([path, file(1:8), '_CONECT_COH.mat'],'coh')
+save([path, file(1:8), '_CONECT_COH_FREQ.mat'],'coh_freq')
+save([path, file(1:8), '_CONECT_COH_TENSOR_CONECTIVIDAD.mat'],'coh_conectivity')
 % save([path, file(1:8), '_CONECT_COHM.mat'],'cohm')

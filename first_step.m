@@ -1,11 +1,11 @@
-path = 'E:\DatosPsiquiatrico\MVD\';
-path_save = 'E:\DatosPsiquiatrico\Procesados\MVD\';
+path = 'E:\DatosPsiquiatrico\MMN\';
+path_save = 'E:\DatosPsiquiatrico\Procesados\MMN\';
 
 file_list = dir([path, '*.bdf']);
 filenames = cell(1,length(file_list));
 
-for i=29:length(file_list)
-    filenames{i-28} = file_list(i).name;       
+for i=58:length(file_list)
+    filenames{i-57} = file_list(i).name;       
 end
 
 % VER FEP_004 Y FEP_004_BASAL PARA STB
@@ -13,9 +13,9 @@ end
 
 % events = [91 92 101 102]; % STB (cuando responde)
 % events = [1 2 3 10 11 12]; % DF (cuando responde)
-% events = 70; % MMN Emocional (cuando aparece estimulo infrecuente) SON
+events = [70]; % MMN Emocional (cuando aparece estimulo infrecuente) SON
 % MUCHAS PARTES, VER COMO TRABAJAR (59)
-events = [25 35 40 55]; % MD (cuando se muestra cada imagen) (29)
+% events = [25 35 40 55]; % MVD (cuando se muestra cada imagen) (29)
 for i=1:length(file_list)
     name = filenames{i};
     file = [path, name];
@@ -35,13 +35,13 @@ for i=1:length(file_list)
     cfg.continuous      = 'no';
     cfg.trials          = 'all';
     cfg.channel         = 'all';
-    cfg.bpfilter        = 'yes';
-    cfg.bpfreq          = [0.1 100]; % VER ESTO
+    cfg.bpfilter        = 'yes'; % SE APLICA EL FILTRO PASABANDA (band stop filter)
+    cfg.bpfreq          = [0.1 100]; % VER ESTO, REMUEVE LOS HZ CHICOS
     cfg.bpfiltord       = 2;
     cfg.bpfilttype      = 'but';
     cfg.demean          = 'yes';
     cfg.detrend         = 'yes';
-    cfg.dftfilter       = 'yes'; %Remueve 50 HZ
+    cfg.dftfilter       = 'yes'; %Remueve 50 HZ PARA ARRIBA ?
 
     % Re-referencing options - see explanation below
 

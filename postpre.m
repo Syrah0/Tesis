@@ -1,13 +1,13 @@
 %%%%%%%%%%%%% calcular ERP
 
 %% Cargar data
-path = 'E:\DatosPsiquiatrico\Procesados\STB\';
-file = 'FEP_010__FINISH.mat';
+path = 'E:\DatosPsiquiatrico\Procesados\DBF\';
+file = 'CNTF_009_DBF_R1__FINISH.mat';
 data = load([path,file]);
 data = data.DATA_REJECT;
 
 %% Elegir trial y hacer filtro pasa bajo a 40
-ID             = 91; % event
+ID             = 12; % event
 cfg            = [];
 cfg.trial      = find(data.trialinfo(:,1)==ID); % por cada eventtype
 cfg.lpfilter   = 'yes';

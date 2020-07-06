@@ -1,6 +1,6 @@
 %% cargar data
-path        = 'E:\DatosPsiquiatrico\Procesados\STB\';
-file        = 'FEP_010_REJECT_COMP.mat';
+path        = 'E:\DatosPsiquiatrico\Procesados\DBF\';
+file        = 'CNTF_009_DBF_R1_REJECT_COMP.mat';
 data        = load([path,file]);
 DATAEEG_CAT = data.REJECT_COMP;
 

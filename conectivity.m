@@ -2,8 +2,8 @@
 
 %% cargar data preprocesada en EEGLAB
 % data = eeglab2fieldtrip(EEG, 'preprocessing', 'none');   % convert the EEG data structure to fieldtrip
-path = 'E:\DatosPsiquiatrico\Procesados\STB\';
-file = 'FEP_010__FINISH.mat';
+path = 'E:\DatosPsiquiatrico\Procesados\DBF\';
+file = 'CNTF_007_DBF_R1__FINISH.mat';
 data = load([path,file]);
 data = data.DATA_REJECT;
 

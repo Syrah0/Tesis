@@ -3,7 +3,7 @@
 
 %% cargar data
 path    = 'E:\DatosPsiquiatrico\Procesados\MMN\';
-file    = 'CNTF_RMS_MMN_R4_FIRST_STEP.mat';
+file    = 'CNTF_ALC_MMN_R3_FIRST_STEP.mat';
 data    = load([path,file]);
 dataFIC = data.DATAEEG;
 

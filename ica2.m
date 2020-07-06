@@ -1,14 +1,14 @@
 %% RECHAZAR COMPONENTES
 %% Cargar dato
-path        = 'E:\DatosPsiquiatrico\Procesados\STB\';
-file        = 'FEP_010__ICA_FIX.mat';
+path        = 'E:\DatosPsiquiatrico\Procesados\DBF\';
+file        = 'CNTF_009_DBF_R1__ICA_FIX.mat';
 data        = load([path,file]);
 comp        = data.comp;
 
 %% 2 Rechazar componentes
 
 cfg           = [];
-cfg.component = [1]; %  CAMBIA según el sujeto que se analiza
+cfg.component = [1,2,10]; %  CAMBIA según el sujeto que se analiza
 DATA_REJECT   = ft_rejectcomponent(cfg,comp);
 
 %% Para ver como quedó la señal

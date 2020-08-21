@@ -51,6 +51,6 @@ coh_freq = coh.freq;
 coh_conectivity = coh.cohspctrm;
 
 save([path, file(1:8), '_CONECT_COH.mat'],'coh')
-save([path, file(1:8), '_CONECT_COH_FREQ.mat'],'coh_freq')
+save([path, file(1:8), '_CONECT_COH_FREQ.mat'],'coh_freq') % MAS IMPORTANTE PARA TRABAJAR
 save([path, file(1:8), '_CONECT_COH_TENSOR_CONECTIVIDAD.mat'],'coh_conectivity')
 % save([path, file(1:8), '_CONECT_COHM.mat'],'cohm')

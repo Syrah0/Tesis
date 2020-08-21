@@ -2,8 +2,8 @@
 %%%% problema!!!! D:
 
 %% cargar data
-path    = 'E:\DatosPsiquiatrico\Procesados\MMN\';
-file    = 'CNTF_RMS_MMN_R4_FIRST_STEP.mat';
+path    = 'E:\DatosPsiquiatrico\Procesados\STB\';
+file    = 'FEP_018_FIRST_STEP.mat';
 data    = load([path,file]);
 dataFIC = data.DATAEEG;
 

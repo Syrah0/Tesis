@@ -1,6 +1,5 @@
 %% cargar data
-path        = 'E:\DatosPsiquiatrico\Procesados\STB\';
-% file        = 'FEP_0005_DBF_R1_REJECT_COMP.mat';
+path        = '...';
 file_list = dir([path, '*_REJECT_COMP.mat']);
 filenames = cell(1,length(file_list));
 

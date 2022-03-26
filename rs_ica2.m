@@ -1,6 +1,6 @@
 %% RECHAZAR COMPONENTES
 %% Cargar dato
-path        = 'E:\DatosPsiquiatrico\Procesados\RS3\';
+path        = '...';
 file        = 'XXX__ICA_FIX.mat';
 data        = load([path,file]);
 comp        = data.comp;
@@ -8,10 +8,10 @@ comp        = data.comp;
 %% 2 Rechazar componentes
 
 cfg           = [];
-cfg.component = []; %  CAMBIA según el sujeto que se analiza
+cfg.component = []; %  CAMBIA segÃºn el sujeto que se analiza; componentes a rechazar
 DATA_REJECT   = ft_rejectcomponent(cfg,comp);
 
-%% Para ver como quedó la señal
+%% Para ver como quedÃ³ la seÃ±al
 
 cfg            = [];
 cfg.continuous = 'no';
@@ -24,7 +24,4 @@ ft_databrowser(cfg,DATA_REJECT);
  
 %% Guarda el dato analizado
 
-%DATA_REJECT_SINSAL_PAT = DATA_REJECT;
 save([path, file(1:end-12), '_FINISH.mat'],'DATA_REJECT') ; % POST REJECT
-
-%close all

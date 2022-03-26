@@ -3,7 +3,7 @@
 %% RECHAZO ARTEFACTOS (databrowser)
 
 %% cargar data
-path    = 'E:\DatosPsiquiatrico\Procesados\RS3\';
+path    = '...';
 file_list = dir([path,'*.mat']);
 
 filenames = cell(1,length(file_list));
@@ -21,16 +21,8 @@ for i=1:length(filenames)
     else
         dataFIC = data.DATAEEGCLOSE;
     end
-
-
-    %% Seleccionar artefactos manualmente
-
-    % first select only the EEG channels
-    % cfg         = [];
-    % cfg.channel = 'EEG';
-    % data        = ft_preprocessing(cfg,dataFIC);
-
-    % divido la señal completa en mini trials de 2 seg (considerar que la señal
+    
+    % divido la seÃ±al completa en mini trials de 2 seg (considerar que la seÃ±al
     % debiese tener 90 seg => debiesen dar 45 trials
     delta = 2; % divido en varios trials de 2 seg cada uno
 
@@ -52,7 +44,7 @@ for i=1:length(filenames)
     cfg.method     = 'trial';
     cfg.viewmode   = 'summary' ;
 
-    REJECT_COMP    = ft_rejectvisual(cfg,dataFIC); %Data EEG es mi dato con la señal
+    REJECT_COMP    = ft_rejectvisual(cfg,dataFIC); %Data EEG es mi dato con la seÃ±al
 
     cfg            = [];
     cfg.continuous = 'no';

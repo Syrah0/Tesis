@@ -1,8 +1,8 @@
 %%%%%%%%%%%%% calcular ERP
 
 %% Cargar data
-path = 'E:\DatosPsiquiatrico\Procesados\DBF\';
-file = 'CNTF_009_DBF_R1__FINISH.mat';
+path = '...';
+file = '...';
 data = load([path,file]);
 data = data.DATA_REJECT;
 
@@ -21,7 +21,7 @@ erps = ft_timelockanalysis(cfg, data); %% calcula ERP
 
 %% correccion de linea base --> el promedio lo corrigen
 cfg          = [];
-cfg.baseline = [-0.2 -0.1]; % no usar linea base en el cero
+cfg.baseline = [-0.3 0];
 timelock     = ft_timelockbaseline(cfg, erps);
 %%%timelock_CROM_PAT = timelock; %Cambia categoria y sujetos que se
 %%%analiza?
@@ -59,17 +59,3 @@ cfg.xlim     = [-0.250 1];
 
 figure;
 ft_singleplotER(cfg,timelock); %% PARA PLOTEAR DE 1 CANAL
-
-%% Calcular el gran promedio 
-
-%%% ANALIZAR ESTO
-%%% GRAND_AVERAGE_ERP_SinSal_CONT{n,1} = eval(sprintf(['timelock_ERP_' CAT{1,1} '_' SUJ{1,1}])); %CAMBIAR NOMBRE VARIABLE
-
-% cfg                = [];
-% cfg.channel        = 'all';
-% cfg.latency        = 'all'; %in seconds or 'all' (default = 'all')
-% cfg.keepindividual = 'no';
-% cfg.demean         = 'yes';
-% cfg.detrend        = 'yes';
-% 
-% GRAND_AVERAGE_FINAL_ERP_CONT = ft_timelockgrandaverage(cfg, GRAND_AVERAGE_ERP_SinSal_CONT{:});

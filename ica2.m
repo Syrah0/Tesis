@@ -1,17 +1,17 @@
 %% RECHAZAR COMPONENTES
 %% Cargar dato
-path        = 'E:\DatosPsiquiatrico\Procesados\RS3\';
-file        = filenames{128};
+path        = '...';
+file        = '...;
 data        = load([path,file]);
 comp        = data.comp;
 
-%% 2 Rechazar componentes
+%% Rechazar componentes
 
 cfg           = [];
-cfg.component = [3,7]; %  CAMBIA según el sujeto que se analiza
+cfg.component = []; %  CAMBIA segÃºn el sujeto que se analiza; componentes a rechazar
 DATA_REJECT   = ft_rejectcomponent(cfg,comp);
 
-%% Para ver como quedó la señal
+%% Para ver como quedÃ³ la seÃ±al
 
 cfg            = [];
 cfg.continuous = 'no';

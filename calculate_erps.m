@@ -1,9 +1,8 @@
 %%%%%%%%%%%%% calcular ERP
 
 %% Cargar data
-path = 'E:\DatosPsiquiatrico\Procesados\STB\';
-correct_path = 'E:\DatosPsiquiatrico\Procesados\DatosCorrectos\STB\';
-%file = 'CNTF_009_DBF_R1__FINISH.mat';
+path = '...';
+correct_path = '...';
 
 file_list = dir([path, '*_FINISH.mat']);
 filenames = cell(1,length(file_list));
@@ -12,7 +11,7 @@ for i=1:length(file_list)
     filenames{i-0} = file_list(i).name;       
 end
 
-ids  = [91 92 101 102];
+ids  = []; # event types
 
 for j=1:length(file_list)
     file = filenames{j};
@@ -29,7 +28,6 @@ for j=1:length(file_list)
         cfg.lpfilter   = 'yes';
         cfg.lpfreq     = 40;
         cfg.keeptrials = 'no';
-        % cfg.detrend  = 'yes';
 
         data = ft_preprocessing(cfg, data);
         
@@ -40,11 +38,9 @@ for j=1:length(file_list)
 
         %% correccion de linea base --> el promedio lo corrigen
         cfg          = [];
-        % VER ESTA LINEA BASE SI LA TOMO DESDE EL INICIO O POCO DESPUES
-        cfg.baseline = [-0.3 -0.1]; % no usar linea base en el cero
+        cfg.baseline = [-0.3 0];
         timelock     = ft_timelockbaseline(cfg, erps);
-        %%%timelock_CROM_PAT = timelock; %Cambia categoria y sujetos que se
-        %%%analiza?
+        
         avg = timelock.avg;
         times = timelock.time;
 

@@ -1,16 +1,15 @@
-path = 'E:\DatosPsiquiatrico\RS\';
-path_channel = 'E:\DatosPsiquiatrico\canales.ced';
-path_save = 'E:\DatosPsiquiatrico\Procesados\RS2\';
+path = '...';
+path_channel = '...';
+path_save = 'E...';
 file_list = dir([path,'*.bdf']);
 t_vent = 90;
 
 filenames = cell(1,length(file_list));
-for i=94:length(file_list)
-    filenames{i-93} = file_list(i).name;       
+for i=1:length(file_list)
+    filenames{i} = file_list(i).name;       
 end
 
-i = 1;
-%for i=1:length(filenames)
+for i=1:length(filenames)
     file = filenames{i}
     
     %% separar la data en 2 (ojos abiertos y ojos cerrados)
@@ -54,22 +53,22 @@ i = 1;
     EEG_open_eyes = pop_eegfiltnew(EEG_open_eyes, 'locutoff', 0.05, 'hicutoff', 50, 'plotfreqz', 0);
     EEG_close_eyes = pop_eegfiltnew(EEG_close_eyes, 'locutoff', 0.05, 'hicutoff', 50, 'plotfreqz', 0);
     
-    % muscular F-T (sacar trozos de la señal). Solo si esta muy marcado        
+    % muscular F-T (sacar trozos de la seï¿½al). Solo si esta muy marcado        
     
     %% Downsampling a 256 Hz (no menor a 1.5 del tamanho senhal)
     EEG_open_eyes = pop_resample(EEG_open_eyes, 256);
     EEG_close_eyes = pop_resample(EEG_close_eyes, 256);
     
     %% Corregir linea base (promedio)
-  %  EEG_open_eyes = pop_rmbase(EEG_open_eyes, [], []);
-  %  EEG_close_eyes = pop_rmbase(EEG_close_eyes, [], []);
+    EEG_open_eyes = pop_rmbase(EEG_open_eyes, [], []);
+    EEG_close_eyes = pop_rmbase(EEG_close_eyes, [], []);
     
     %% Descomposicion ICA
     EEG_open_eyes = pop_runica(EEG_open_eyes, 'icatype', 'runica', 'extended',1,'interrupt','off');
     EEG_close_eyes = pop_runica(EEG_close_eyes, 'icatype', 'runica', 'extended',1,'interrupt','off');
     
-    % sacar pestañeo - sacada (Esto saca componentes pero no pierde
-    % informacion de la señal (señal cuadrara = sacada (azul-rojo frontal), pestañeo = rojo frontal)
+    % sacar pestanheo - sacada (Esto saca componentes pero no pierde
+    % informacion de la senhal (senhal cuadrara = sacada (azul-rojo frontal), pestanheo = rojo frontal)
     % no mas de 3 componentes
     
     %% Sacar componentes

@@ -1,35 +1,48 @@
 # Tesis
 
-first_step
+## Caso pruebas con estímulos:
+1. first_step.m 
 
-rechazo_comp_1
+Se encarga de cargar los datos y aplicar filtros
 
-ica (ver cuales rechazar)
+2. rechazo_comp_1.m
 
-ica2 (rechazarlos)
+Permite limpiar señal mediante eliminación de trials
 
-postpre (Saca ERP)
+3. run_ica.m
 
-conectivity (Saca conectividad)
+Ejecuta método ICA en señal limpiada
 
-calculate_measures_erp
+4. ica2.m
 
-Enlaces de interes:
+Permite el rechazo de componentes independientes del ICA
 
-* http://www.fieldtriptoolbox.org/example/getting_started_with_reading_raw_eeg_or_meg_data/
+5. calculate_erps.m
 
-* http://www.fieldtriptoolbox.org/example/use_independent_component_analysis_ica_to_remove_ecg_artifacts/
+Permite calcular los ERP
 
-* http://www.fieldtriptoolbox.org/getting_started/biosemi/
+6. calculate_connectivity.m
 
-* http://www.fieldtriptoolbox.org/tutorial/visual_artifact_rejection/
+Permite calcular la Conectividad Cerebral
 
-* https://mailman.science.ru.nl/pipermail/fieldtrip/2013-June/006658.html
+## Caso Resting State
 
-* http://www.fieldtriptoolbox.org/faq/how_can_i_use_the_databrowser/
+1. rs_first_step.m 
 
-* http://www.fieldtriptoolbox.org/reference/ft_databrowser/
+Se encarga de cargar los datos, separar la señal para ojos abiertos y cerrados y aplicar filtros
 
-* http://www.fieldtriptoolbox.org/reference/ft_rejectartifact/
+2. rs_rechazo_comp.m
 
-* http://www.fieldtriptoolbox.org/faq/why_is_there_a_residual_50hz_line-noise_component_after_applying_a_dft_filter/
+Permite limpiar señal mediante eliminación de trials
+
+3. rs_ica.m
+
+Ejecuta método ICA en señal limpiada
+
+4. rs_ica2.m
+
+Permite el rechazo de componentes independientes del ICA
+
+5. calculate_connectivity_rs.m
+
+Permite calcular la Conectividad Cerebral

@@ -27,6 +27,11 @@ for j=1:length(file_list)
         cfg.keeptrials = 'yes';
 
         data           = ft_preprocessing(cfg, data);
+
+        %% correccion de linea base --> el promedio lo corrigen
+        cfg          = [];
+        cfg.baseline = [-0.3 0];
+        data         = ft_timelockbaseline(cfg, data);
         
         cfg.method    = 'mtmfft';
         cfg.taper     = 'dpss';
@@ -49,9 +54,7 @@ for j=1:length(file_list)
         
         save([path, strrep(file, '_FINISH', name_coh)],'coh')
         save([path, strrep(file, '_FINISH', name_freq)],'coh_freq')
-        save([path, strrep(file, '_FINISH', name_tensor)],'coh_connect')
-        
-        save([correct_path, strrep(file, '_FINISH', name_freq)],'coh_connect') % MAS IMPORTANTE PARA TRABAJAR
+        save([path, strrep(file, '_FINISH', name_tensor)],'coh_connect') % MAS IMPORTANTE PARA TRABAJAR
     
         sprintf('Event %i terminado', ID)
     end

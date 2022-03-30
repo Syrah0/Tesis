@@ -1,15 +1,12 @@
-path = 'E:\DatosPsiquiatrico\RS\';
-%file = 'CNTF_0001.bdf';
-path_save = 'E:\DatosPsiquiatrico\Procesados\RS3\';
+path = '...';
+path_save = '...';
 file_list = dir([path,'*.bdf']);
-t_vent = 90; % me quedo con 90 seg de cada señal, la cual debiese tener un max de 2 min (120 seg) aprox
-
+t_vent = 90; % me quedo con 90 seg de cada senhal, la cual debiese tener un max de 2 min (120 seg) aprox
 
 filenames = cell(1,length(file_list));
-for i=89:length(file_list)
-    filenames{i-88} = file_list(i).name;       
+for i=1:length(file_list)
+    filenames{i} = file_list(i).name;       
 end
-
 
 for i=1:length(filenames)
     file = filenames{i}
@@ -40,11 +37,11 @@ for i=1:length(filenames)
         cfg.datafile = [path,file];
         data = ft_preprocessing(cfg); % para obtener EEG original y sus datos para luego dividirla
 
-        min_time = min(cellfun(@min, data.time)); % obtengo tiempo minimo de la señal original
-        max_time = max(cellfun(@max, data.time)); % obtengo tiempo maximo de la señal original
-        % ese es el rango de tiempo en el cual se mueve la señal
+        min_time = min(cellfun(@min, data.time)); % obtengo tiempo minimo de la seï¿½al original
+        max_time = max(cellfun(@max, data.time)); % obtengo tiempo maximo de la seï¿½al original
+        % ese es el rango de tiempo en el cual se mueve la seï¿½al
 
-        % divido la señal en dos partes iguales, una para open eyes y otra para
+        % divido la seï¿½al en dos partes iguales, una para open eyes y otra para
         % close eyes
         tmax = max_time/2;
         cfg = [];
@@ -75,15 +72,15 @@ for i=1:length(filenames)
     cfg.toilim = [min_eeg_close_eyes+tau_close_eyes max_eeg_close_eyes-tau_close_eyes];
     data_close_eyes = ft_redefinetrial(cfg,data_close_eyes); % close eyes
     
-    %% APLICAR FILTRO A 50 HZ (lo mas probable otro preprocesing que puede ir aca mismo)
+    %% APLICAR FILTRO A 50 HZ
 
-    % data close eyes
+    % data open eyes
     cfg = [];
     cfg.continuous      = 'no';
     cfg.trials          = 'all';
     cfg.channel         = 'all';
     cfg.bpfilter        = 'yes'; % SE APLICA EL FILTRO PASABANDA
-    cfg.bpfreq          = [0.1 100]; % VER ESTO, REMUEVE LOS HZ CHICOS
+    cfg.bpfreq          = [0.1 100]; % REMUEVE LOS HZ CHICOS
     cfg.bpfiltord       = 2;
     cfg.bpfilttype      = 'but';
     cfg.demean          = 'yes';
@@ -105,12 +102,12 @@ for i=1:length(filenames)
     cfg.trials          = 'all';
     cfg.channel         = 'all';
     cfg.bpfilter        = 'yes'; % SE APLICA EL FILTRO PASABANDA
-    cfg.bpfreq          = [0.1 100]; % VER ESTO, REMUEVE LOS HZ CHICOS
+    cfg.bpfreq          = [0.1 100]; %  REMUEVE LOS HZ CHICOS
     cfg.bpfiltord       = 2;
     cfg.bpfilttype      = 'but';
     cfg.demean          = 'yes';
-    cfg.detrend         = 'yes'; %QUE HACE??
-    cfg.dftfilter       = 'yes'; %Remueve 50 HZ PARA ARRIBA ?
+    cfg.detrend         = 'yes';
+    cfg.dftfilter       = 'yes'; %Remueve 50 HZ PARA ARRIBA 
 
     % Re-referencing options - see explanation below
 
@@ -123,5 +120,5 @@ for i=1:length(filenames)
 
     % data_r2_1.trial{1,1} esta el EEG
 
-    %% DESPUES DE ESO VIENE EL PROCESAMIENTO MANUAL DE LA SEÑAL PERO HAY QUE CAMBIARLA PARA RS
+    %% DESPUES DE ESO VIENE EL PROCESAMIENTO MANUAL DE LA SENHAL PERO HAY QUE CAMBIARLA PARA RS
 end

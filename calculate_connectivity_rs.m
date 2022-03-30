@@ -7,7 +7,7 @@ file_list = dir([path, '*_FINISH.mat']);
 filenames = cell(1,length(file_list));
 
 for i=1:length(file_list)
-    filenames{i-0} = file_list(i).name;       
+    filenames{i} = file_list(i).name;       
 end
 
 for j=1:length(file_list)
@@ -28,17 +28,13 @@ for j=1:length(file_list)
     cfg.method    = 'coh';
     coh           = ft_connectivityanalysis(cfg, freq); %% muestra la conectividad de un electrodo con otro para una cierta frecuencia, la diagonal es 1 => 100% conectividad, mientras mas cerca de 1 => mas conectado estas
         
-    coh_freq      = coh.freq;
+    % coh_freq      = coh.freq;
     coh_connect   = coh.cohspctrm;
 
-    name_coh = sprintf('_EVENT_%i_CONECT_COH', ID);
-    name_freq = sprintf('_EVENT_%i_AVG_CONECT_COH_FREQ', ID);
-    name_tensor = sprintf('_EVENT_%i_TIME_CONECT_COH_TENSOR_CONECTIVIDAD', ID);
-        
-    save([path, strrep(file, '_FINISH', name_coh)],'coh')
-    save([path, strrep(file, '_FINISH', name_freq)],'coh_freq')
-    save([path, strrep(file, '_FINISH', name_tensor)],'coh_connect') % MAS IMPORTANTE PARA TRABAJAR
-        
+    % name_coh = '_CONECT_COH';
+    name_freq = '_AVG_CONECT_COH_FREQ';
+    % name_tensor = '_TIME_CONECT_COH_TENSOR_CONECTIVIDAD';
+
     save([correct_path, strrep(file, '_FINISH', name_freq)],'coh_connect') % MAS IMPORTANTE PARA TRABAJAR
     sprintf('%s terminado', file)
 end

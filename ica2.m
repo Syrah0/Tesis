@@ -1,7 +1,7 @@
 %% RECHAZAR COMPONENTES
 %% Cargar dato
 path        = '...';
-file        = '...;
+file        = '...';
 data        = load([path,file]);
 comp        = data.comp;
 

@@ -5,23 +5,34 @@ file        = 'XXX__ICA_FIX.mat';
 data        = load([path,file]);
 comp        = data.comp;
 
-%% 2 Rechazar componentes
+file_list = dir([path, '*.mat']);
+filenames = cell(1,length(file_list));
 
-cfg           = [];
-cfg.component = []; %  CAMBIA según el sujeto que se analiza; componentes a rechazar
-DATA_REJECT   = ft_rejectcomponent(cfg,comp);
+for i=1:length(file_list)
+    filenames{i} = file_list(i).name;       
+end
 
-%% Para ver como quedó la señal
+for i=1:length(file_list)
+    file        = filenames{i};
+    fprintf('abriendo %s\n', file);
+    data        = load([path,file]);
+    comp        = data.comp;
 
-cfg            = [];
-cfg.continuous = 'no';
-cfg.channel    = 'all';
-cfg.viewmode   = 'vertical';%'butterfly'
-cfg.compscale  = 'global'; %'local'
-cfg.fontsize   = 8;
+    %% 2 Rechazar componentes
+    icas = input('Componentes a rechazar: ');
+    if isempty(icas)
+        fprintf('sin rechazo\n');
+    else
+        fprintf('rechazando: %d\n', icas);
+    end
+    cfg           = [];
+    cfg.component = icas; %  CAMBIA segun el sujeto que se analiza
+    DATA_REJECT   = ft_rejectcomponent(cfg,comp);
 
-ft_databrowser(cfg,DATA_REJECT);
- 
-%% Guarda el dato analizado
+    %% Guarda el dato analizado
 
-save([path, file(1:end-12), '_FINISH.mat'],'DATA_REJECT') ; % POST REJECT
+    %DATA_REJECT_SINSAL_PAT = DATA_REJECT;
+    save([path_n, file(1:end-12), '_FINISH.mat'],'DATA_REJECT') ; % POST REJECT
+
+    %close all
+end

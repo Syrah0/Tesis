@@ -1,21 +1,13 @@
-path = 'E:\DatosPsiquiatrico\MMN\';
-path_save = 'E:\DatosPsiquiatrico\Procesados\MMN\';
+path = '...';
+path_save = '...';
 
 file_list = dir([path, '*.bdf']);
 filenames = cell(1,length(file_list));
 
-for i=58:length(file_list)
-    filenames{i-57} = file_list(i).name;       
+for i=1:length(file_list)
+    filenames{i} = file_list(i).name;       
 end
 
-% VER FEP_004 Y FEP_004_BASAL PARA STB
-% CNTF_001 STB ESTA ENTRE -0.2 Y 0.8
-
-% events = [91 92 101 102]; % STB (cuando responde)
-% events = [1 2 3 10 11 12]; % DF (cuando responde)
-events = [70]; % MMN Emocional (cuando aparece estimulo infrecuente) SON
-% MUCHAS PARTES, VER COMO TRABAJAR (59)
-% events = [25 35 40 55]; % MVD (cuando se muestra cada imagen) (29)
 for i=1:length(file_list)
     name = filenames{i};
     file = [path, name];
@@ -24,9 +16,8 @@ for i=1:length(file_list)
 
     cfg                     = [];
     cfg.dataset             = file;
-    cfg.trialdef.eventtype  = 'STATUS'; % que era ?
+    cfg.trialdef.eventtype  = 'STATUS';
     cfg.trialdef.eventvalue = events;
-    % con 0.3 y 1 hay overlap
     cfg.trialdef.prestim    = 0.3;
     cfg.trialdef.poststim   = 1;
     cfg                     = ft_definetrial(cfg);
@@ -36,12 +27,12 @@ for i=1:length(file_list)
     cfg.trials          = 'all';
     cfg.channel         = 'all';
     cfg.bpfilter        = 'yes'; % SE APLICA EL FILTRO PASABANDA (band stop filter)
-    cfg.bpfreq          = [0.1 100]; % VER ESTO, REMUEVE LOS HZ CHICOS
+    cfg.bpfreq          = [0.1 100]; % REMUEVE LOS HZ CHICOS
     cfg.bpfiltord       = 2;
     cfg.bpfilttype      = 'but';
     cfg.demean          = 'yes';
     cfg.detrend         = 'yes';
-    cfg.dftfilter       = 'yes'; %Remueve 50 HZ PARA ARRIBA ?
+    cfg.dftfilter       = 'yes'; % Remueve 50 HZ PARA ARRIBA
 
     % Re-referencing options - see explanation below
 

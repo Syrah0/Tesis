@@ -8,7 +8,7 @@ file_list = dir([path, '*_FINISH.mat']);
 filenames = cell(1,length(file_list));
 
 for i=1:length(file_list)
-    filenames{i-0} = file_list(i).name;       
+    filenames{i} = file_list(i).name;       
 end
 
 ids  = []; # event types
@@ -28,7 +28,6 @@ for j=1:length(file_list)
         cfg.lpfilter   = 'yes';
         cfg.lpfreq     = 40;
         cfg.keeptrials = 'no';
-
         data = ft_preprocessing(cfg, data);
         
         %% Calculate ERP

@@ -23,8 +23,6 @@ erps = ft_timelockanalysis(cfg, data); %% calcula ERP
 cfg          = [];
 cfg.baseline = [-0.3 0];
 timelock     = ft_timelockbaseline(cfg, erps);
-%%%timelock_CROM_PAT = timelock; %Cambia categoria y sujetos que se
-%%%analiza?
 avg = timelock.avg;
 times = timelock.time;
 

@@ -13,7 +13,7 @@ RESAM = ft_resampledata(cfg, DATAEEG_CAT); %Cambiar fin de extension
         
 cfg         = [];
 cfg.method  = 'runica';
-cfg.channel = 1:64; %<=>{'all', '-EXG1', '-EXG2', '-EXG3', '-EXG4', '-EXG5', '-EXG6', '-EXG7', '-EXG8', '-Status', '-refchan'};
+cfg.channel = 1:64; % <=>{'all', '-EXG1', '-EXG2', '-EXG3', '-EXG4', '-EXG5', '-EXG6', '-EXG7', '-EXG8', '-Status', '-refchan'};
 % indico el rank de mi conjunto de datos explicitamente
 cfg.runica.pca = 64; % ESTO ARREGLO ICA, INDICAR EXPLICITAMENTE LA CANTIDAD DE CANALES INDEPENDIENTES!!!
 comp        = ft_componentanalysis(cfg, RESAM);

@@ -4,7 +4,7 @@ file_list = dir([path, '*_REJECT_COMP.mat']);
 filenames = cell(1,length(file_list));
 
 for i=1:length(file_list)
-    filenames{i-0} = file_list(i).name;       
+    filenames{i} = file_list(i).name;       
 end
 
 for i=1:length(file_list)
@@ -15,7 +15,7 @@ for i=1:length(file_list)
 
     %% downsamplig --> ICA --> RECHAZO VISUAL
     cfg            = [];
-    cfg.resamplefs = 256;
+    cfg.resamplefs = 256; % BAJAR A 168
     cfg.detrend    = 'no';
 
     RESAM = ft_resampledata(cfg, DATAEEG_CAT); %Cambiar fin de extension
@@ -28,6 +28,6 @@ for i=1:length(file_list)
     cfg.runica.pca = 64; % ESTO ARREGLO ICA, INDICAR EXPLICITAMENTE LA CANTIDAD DE CANALES INDEPENDIENTES!!!
     comp        = ft_componentanalysis(cfg, RESAM);
 
-    save([path, file(1:end-15), '_ICA_FIX.mat'],'comp') ;
+    save([path_n, file(1:end-15), '_ICA_FIX.mat'],'comp') ;
     sprintf('Guardado %s', file)
 end
